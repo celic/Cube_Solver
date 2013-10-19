@@ -5,5 +5,6 @@ Initial code can be found at http://pastebin.com/bF44i8i7 and was written by Leo
 
 TODO:
 * Clean up existing code
+* Fix turn methods
 * Cube class to make a 'Cube' object
 * Print the current state of the cube (formatted nicely)

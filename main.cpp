@@ -4,15 +4,15 @@
 
 using namespace std;
 
-int startMatrix[48];
-int tempMatrix[48];
-int workingMatrix[48];
+char startMatrix[54];
+char tempMatrix[54];
+char workingMatrix[54];
 int permutations = 0;
 int temp;
 
-bool arraysEqual(int i[48], int j[48]){
+bool arraysEqual(char i[54], char j[54]){
     temp = 0;
-    for (int k = 0; k < 48; k++){
+    for (int k = 0; k < 54; k++){
         if (i[k] != j[k]){
             temp++;
         }
@@ -24,7 +24,7 @@ bool arraysEqual(int i[48], int j[48]){
     }
 }
 
-void R(void){
+void R(){
     tempMatrix[0] = workingMatrix[0];
     tempMatrix[1] = workingMatrix[1];
     tempMatrix[2] = workingMatrix[34];
@@ -76,7 +76,8 @@ void R(void){
     
     memcpy(workingMatrix, tempMatrix, sizeof(tempMatrix));
 }
-void U(void){
+
+void U(){
     tempMatrix[0] = workingMatrix[8];
     tempMatrix[1] = workingMatrix[9];
     tempMatrix[2] = workingMatrix[10];
@@ -128,7 +129,8 @@ void U(void){
     
     memcpy(workingMatrix, tempMatrix, sizeof(tempMatrix));
 }
-void F(void){
+
+void F(){
     tempMatrix[0] = workingMatrix[6];
     tempMatrix[1] = workingMatrix[7];
     tempMatrix[2] = workingMatrix[0];
@@ -180,7 +182,8 @@ void F(void){
     
     memcpy(workingMatrix, tempMatrix, sizeof(tempMatrix));
 }
-void L(void){
+
+void L(){
     tempMatrix[0] = workingMatrix[40];
     tempMatrix[1] = workingMatrix[1];
     tempMatrix[2] = workingMatrix[2];
@@ -232,7 +235,8 @@ void L(void){
     
     memcpy(workingMatrix, tempMatrix, sizeof(tempMatrix));
 }
-void B(void){
+
+void B(){
     tempMatrix[0] = workingMatrix[0];
     tempMatrix[1] = workingMatrix[1];
     tempMatrix[2] = workingMatrix[2];
@@ -284,7 +288,8 @@ void B(void){
     
     memcpy(workingMatrix, tempMatrix, sizeof(tempMatrix));
 }
-void D(void){
+
+void D(){
     tempMatrix[0] = workingMatrix[0];
     tempMatrix[1] = workingMatrix[1];
     tempMatrix[2] = workingMatrix[2];
@@ -336,119 +341,176 @@ void D(void){
     
     memcpy(workingMatrix, tempMatrix, sizeof(tempMatrix));
 }
-void Ri(void){
+
+void Ri(){
     R();
     R();
     R();
 }
-void Ui(void){
+
+void Ui(){
     U();
     U();
     U();
 }
-void Fi(void){
+
+void Fi(){
     F();
     F();
     F();
 }
-void Li(void){
+
+void Li(){
     L();
     L();
     L();
 }
-void Bi(void){
+
+void Bi(){
     B();
     B();
     B();
 }
-void Di(void){
+
+void Di(){
     D();
     D();
     D();
 }
 
-void algorithm(void){
-    U();
-    R();
-    Fi();
-    Di();
-    U();
-    L();
-    B();
+void print_cube(char workingMatrix[48]){
+
+    int start_index = 0;
+    int end_index = 8;
+
+    cout << endl;
+
+    // Print top
+    for(int i = 0; i < 9; i++){
+
+        // A line break for rows of 3
+        if(i > 0 && i % 3 == 0) cout << endl;
+        
+        cout << workingMatrix[i] << " ";
+    }
+    cout << endl;
+
+    // Print left
+    for(int i = 9; i < 18; i++){
+
+        // A line break for rows of 3
+        if(i > 0 && i % 3 == 0) cout << endl;
+        
+        cout << workingMatrix[i] << " ";
+    }
+    cout << endl;
+
+    // Print front
+    for(int i = 18; i < 27; i++){
+
+        // A line break for rows of 3
+        if(i > 0 && i % 3 == 0) cout << endl;
+        
+        cout << workingMatrix[i] << " ";
+    }
+    cout << endl;
+
+    // Print right
+    for(int i = 27; i < 36; i++){
+
+        // A line break for rows of 3
+        if(i > 0 && i % 3 == 0) cout << endl;
+        
+        cout << workingMatrix[i] << " ";
+    }
+    cout << endl;
+
+    // Print back
+    for(int i = 36; i < 45; i++){
+
+        // A line break for rows of 3
+        if(i > 0 && i % 3 == 0) cout << endl;
+        
+        cout << workingMatrix[i] << " ";
+    }
+    cout << endl;
+
+    // Print bottom
+    for(int i = 45; i < 54; i++){
+
+        // A line break for rows of 3
+        if(i > 0 && i % 3 == 0) cout << endl;
+        
+        cout << workingMatrix[i] << " ";
+    }
+    cout << endl;
 }
 
-int main(int argc, const char * argv[])
-{
-    startMatrix[0] = 0;
-    startMatrix[1] = 0;
-    startMatrix[2] = 0;
-    startMatrix[3] = 0;
-    startMatrix[4] = 0;
-    startMatrix[5] = 0;
-    startMatrix[6] = 0;
-    startMatrix[7] = 0;
-    startMatrix[8] = 1;
-    startMatrix[9] = 1;
-    startMatrix[10] = 1;
-    startMatrix[11] = 1;
-    startMatrix[12] = 1;
-    startMatrix[13] = 1;
-    startMatrix[14] = 1;
-    startMatrix[15] = 1;
-    startMatrix[16] = 2;
-    startMatrix[17] = 2;
-    startMatrix[18] = 2;
-    startMatrix[19] = 2;
-    startMatrix[20] = 2;
-    startMatrix[21] = 2;
-    startMatrix[22] = 2;
-    startMatrix[23] = 2;
-    startMatrix[24] = 3;
-    startMatrix[25] = 3;
-    startMatrix[26] = 3;
-    startMatrix[27] = 3;
-    startMatrix[28] = 3;
-    startMatrix[29] = 3;
-    startMatrix[30] = 3;
-    startMatrix[31] = 3;
-    startMatrix[32] = 4;
-    startMatrix[33] = 4;
-    startMatrix[34] = 4;
-    startMatrix[35] = 4;
-    startMatrix[36] = 4;
-    startMatrix[37] = 4;
-    startMatrix[38] = 4;
-    startMatrix[39] = 4;
-    startMatrix[40] = 5;
-    startMatrix[41] = 5;
-    startMatrix[42] = 5;
-    startMatrix[43] = 5;
-    startMatrix[44] = 5;
-    startMatrix[45] = 5;
-    startMatrix[46] = 5;
-    startMatrix[47] = 5;
+int main(int argc, const char* argv[]){
+
+    startMatrix[0] = 'w';
+    startMatrix[1] = 'w';
+    startMatrix[2] = 'w';
+    startMatrix[3] = 'w';
+    startMatrix[4] = 'w';    // White Center
+    startMatrix[5] = 'w';
+    startMatrix[6] = 'w';
+    startMatrix[7] = 'w';
+    startMatrix[8] = 'w';
+
+    startMatrix[9] = 'r';
+    startMatrix[10] = 'r';
+    startMatrix[11] = 'r';
+    startMatrix[12] = 'r';
+    startMatrix[13] = 'r';  // Red Center
+    startMatrix[14] = 'r';
+    startMatrix[15] = 'r';
+    startMatrix[16] = 'r';
+    startMatrix[17] = 'r';
+
+    startMatrix[18] = 'y';
+    startMatrix[19] = 'y';
+    startMatrix[20] = 'y';
+    startMatrix[21] = 'y';
+    startMatrix[22] = 'y';  // Yellow Center
+    startMatrix[23] = 'y';
+    startMatrix[24] = 'y';
+    startMatrix[25] = 'y';
+    startMatrix[26] = 'y';
+
+    startMatrix[27] = 'o';
+    startMatrix[28] = 'o';
+    startMatrix[29] = 'o';
+    startMatrix[30] = 'o';
+    startMatrix[31] = 'o';  // Orange Center
+    startMatrix[32] = 'o';
+    startMatrix[33] = 'o';
+    startMatrix[34] = 'o';
+    startMatrix[35] = 'o';
+
+    startMatrix[36] = 'g';
+    startMatrix[37] = 'g';
+    startMatrix[38] = 'g';
+    startMatrix[39] = 'g';
+    startMatrix[40] = 'g';  // Green Center
+    startMatrix[41] = 'g';
+    startMatrix[42] = 'g';
+    startMatrix[43] = 'g';
+    startMatrix[44] = 'g';
+
+    startMatrix[45] = 'b';
+    startMatrix[46] = 'b';
+    startMatrix[47] = 'b';
+    startMatrix[48] = 'b';
+    startMatrix[49] = 'b';  // Blue Center
+    startMatrix[50] = 'b';
+    startMatrix[51] = 'b';
+    startMatrix[52] = 'b';
+    startMatrix[53] = 'b';
     
     memcpy(workingMatrix, startMatrix, sizeof(startMatrix));
 
-    cout << "\nAfter " << permutations << " permutations:\n";
-    for (int i = 0; i < 48; i++){
-        cout << workingMatrix[i] << ", ";
-    }
-    algorithm();
-    permutations++;
-    while (arraysEqual(startMatrix, workingMatrix) == false){
-        cout << "\nAfter " << permutations << " permutations:\n";
-        for (int i = 0; i < 48; i++){
-            cout << workingMatrix[i] << ", ";
-        }
-        algorithm();
-        permutations++;
-    }
-    cout << "\nAfter " << permutations << " permutations:\n";
-    for (int i = 0; i < 48; i++){
-        cout << workingMatrix[i] << ", ";
-    }
-    cout << "\nNumber of permutations: " << permutations;
+    print_cube(workingMatrix);
 
     return 0;
 }
