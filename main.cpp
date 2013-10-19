@@ -1,8 +1,6 @@
-//Rubik's cube algorithm thingy
-//By Leo Adberg
-
 #include <iostream>
-#include <string>
+#include <stdio.h>
+#include <string.h>
 
 using namespace std;
 
