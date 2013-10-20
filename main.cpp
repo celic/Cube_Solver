@@ -1,12 +1,14 @@
 #include <iostream>
 #include <stdio.h>
 #include <string.h>
+#include <cmath>
 
 using namespace std;
 
 char startMatrix[54];
 char tempMatrix[54];
 char workingMatrix[54];
+char printingMatrix[108];
 int permutations = 0;
 int temp;
 
@@ -378,139 +380,127 @@ void Di(){
     D();
 }
 
-void print_cube(char workingMatrix[48]){
+void print_cube(char matrix[]){
 
-    int start_index = 0;
-    int end_index = 8;
-
-    cout << endl;
-
-    // Print top
-    for(int i = 0; i < 9; i++){
-
-        // A line break for rows of 3
-        if(i > 0 && i % 3 == 0) cout << endl;
-        
-        cout << workingMatrix[i] << " ";
+    // Initialize printingMatrix, 12x9 of ' '
+    for(int i = 0; i < 108; i++){
+        printingMatrix[i] = ' ';
     }
-    cout << endl;
 
-    // Print left
-    for(int i = 9; i < 18; i++){
+    // printingMatrix is a 12x9 of peices, or a 4x3 of 'faces' of the cube
 
-        // A line break for rows of 3
-        if(i > 0 && i % 3 == 0) cout << endl;
+    // Transfer matrix into printingMatrix
+    int start = 0;
+    int end = 9;
+
+    // 4 faces in length
+    for(int i = 0; i < 4; i++){
         
-        cout << workingMatrix[i] << " ";
+        // 3 faces in height
+        for(int j = 0; j < 3; j++){
+            
+            // Leave these faces blank
+            if(i == 0 && j == 0) continue;
+            if(i == 2 && j == 0) continue;
+            if(i == 3 && j == 0) continue;
+            if(i == 0 && j == 2) continue;
+            if(i == 2 && j == 2) continue;
+            if(i == 3 && j == 2) continue;
+
+            // 9 peices in a face
+            for(int k = start; k < end; k++){
+
+                int col = k%3;
+                int row = floor((k - start)/3);
+
+                printingMatrix[i*3 + j*3*12 + col + row*12] = matrix[k];
+            }
+
+            // Move begin and end points to the next face
+            start += 9;
+            end += 9;
+        }
     }
-    cout << endl;
 
-    // Print front
-    for(int i = 18; i < 27; i++){
+    // Print out whole printingMatrix
+    for(int i = 0; i < 108; i++){
 
-        // A line break for rows of 3
-        if(i > 0 && i % 3 == 0) cout << endl;
-        
-        cout << workingMatrix[i] << " ";
+        if(i != 0 && i % 12 == 0) cout << endl;
+        cout << printingMatrix[i] << ' ';
     }
-    cout << endl;
 
-    // Print right
-    for(int i = 27; i < 36; i++){
-
-        // A line break for rows of 3
-        if(i > 0 && i % 3 == 0) cout << endl;
-        
-        cout << workingMatrix[i] << " ";
-    }
-    cout << endl;
-
-    // Print back
-    for(int i = 36; i < 45; i++){
-
-        // A line break for rows of 3
-        if(i > 0 && i % 3 == 0) cout << endl;
-        
-        cout << workingMatrix[i] << " ";
-    }
-    cout << endl;
-
-    // Print bottom
-    for(int i = 45; i < 54; i++){
-
-        // A line break for rows of 3
-        if(i > 0 && i % 3 == 0) cout << endl;
-        
-        cout << workingMatrix[i] << " ";
-    }
     cout << endl;
 }
 
 int main(int argc, const char* argv[]){
 
-    startMatrix[0] = 'w';
-    startMatrix[1] = 'w';
-    startMatrix[2] = 'w';
-    startMatrix[3] = 'w';
-    startMatrix[4] = 'w';    // White Center
-    startMatrix[5] = 'w';
-    startMatrix[6] = 'w';
-    startMatrix[7] = 'w';
-    startMatrix[8] = 'w';
+    // Top
+    startMatrix[0] = 'b';
+    startMatrix[1] = 'b';
+    startMatrix[2] = 'b';
+    startMatrix[3] = 'b';
+    startMatrix[4] = 'b';    // Blue Center
+    startMatrix[5] = 'b';
+    startMatrix[6] = 'b';
+    startMatrix[7] = 'b';
+    startMatrix[8] = 'b';
 
-    startMatrix[9] = 'r';
-    startMatrix[10] = 'r';
-    startMatrix[11] = 'r';
-    startMatrix[12] = 'r';
-    startMatrix[13] = 'r';  // Red Center
-    startMatrix[14] = 'r';
-    startMatrix[15] = 'r';
-    startMatrix[16] = 'r';
-    startMatrix[17] = 'r';
+    // Left
+    startMatrix[9] = 'o';
+    startMatrix[10] = 'o';
+    startMatrix[11] = 'o';
+    startMatrix[12] = 'o';
+    startMatrix[13] = 'o';  // Orange Center
+    startMatrix[14] = 'o';
+    startMatrix[15] = 'o';
+    startMatrix[16] = 'o';
+    startMatrix[17] = 'o';
 
-    startMatrix[18] = 'y';
-    startMatrix[19] = 'y';
-    startMatrix[20] = 'y';
-    startMatrix[21] = 'y';
-    startMatrix[22] = 'y';  // Yellow Center
-    startMatrix[23] = 'y';
-    startMatrix[24] = 'y';
-    startMatrix[25] = 'y';
-    startMatrix[26] = 'y';
+    // Front
+    startMatrix[18] = 'w';
+    startMatrix[19] = 'w';
+    startMatrix[20] = 'w';
+    startMatrix[21] = 'w';
+    startMatrix[22] = 'w';  // White Center
+    startMatrix[23] = 'w';
+    startMatrix[24] = 'w';
+    startMatrix[25] = 'w';
+    startMatrix[26] = 'w';
 
-    startMatrix[27] = 'o';
-    startMatrix[28] = 'o';
-    startMatrix[29] = 'o';
-    startMatrix[30] = 'o';
-    startMatrix[31] = 'o';  // Orange Center
-    startMatrix[32] = 'o';
-    startMatrix[33] = 'o';
-    startMatrix[34] = 'o';
-    startMatrix[35] = 'o';
+    // Right
+    startMatrix[27] = 'r';
+    startMatrix[28] = 'r';
+    startMatrix[29] = 'r';
+    startMatrix[30] = 'r';
+    startMatrix[31] = 'r';  // Orange Center
+    startMatrix[32] = 'r';
+    startMatrix[33] = 'r';
+    startMatrix[34] = 'r';
+    startMatrix[35] = 'r';
 
-    startMatrix[36] = 'g';
-    startMatrix[37] = 'g';
-    startMatrix[38] = 'g';
-    startMatrix[39] = 'g';
-    startMatrix[40] = 'g';  // Green Center
-    startMatrix[41] = 'g';
-    startMatrix[42] = 'g';
-    startMatrix[43] = 'g';
-    startMatrix[44] = 'g';
+    // Back
+    startMatrix[36] = 'y';
+    startMatrix[37] = 'y';
+    startMatrix[38] = 'y';
+    startMatrix[39] = 'y';
+    startMatrix[40] = 'y';  // Yellow Center
+    startMatrix[41] = 'y';
+    startMatrix[42] = 'y';
+    startMatrix[43] = 'y';
+    startMatrix[44] = 'y';
 
-    startMatrix[45] = 'b';
-    startMatrix[46] = 'b';
-    startMatrix[47] = 'b';
-    startMatrix[48] = 'b';
-    startMatrix[49] = 'b';  // Blue Center
-    startMatrix[50] = 'b';
-    startMatrix[51] = 'b';
-    startMatrix[52] = 'b';
-    startMatrix[53] = 'b';
+    // Bottom
+    startMatrix[45] = 'g';
+    startMatrix[46] = 'g';
+    startMatrix[47] = 'g';
+    startMatrix[48] = 'g';
+    startMatrix[49] = 'g';  // Green Center
+    startMatrix[50] = 'g';
+    startMatrix[51] = 'g';
+    startMatrix[52] = 'g';
+    startMatrix[53] = 'g';
     
-    memcpy(workingMatrix, startMatrix, sizeof(startMatrix));
-
-    print_cube(workingMatrix);
+    print_cube(startMatrix);
 
     return 0;
 }
